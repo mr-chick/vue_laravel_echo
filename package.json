@@ -1,0 +1,66 @@
+{
+  "_from": "@mr_chick/vue_laravel_echo",
+  "_id": "@mr_chick/vue_laravel_echo@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-feJDXVV+bm+XX2uGREcOBCuQ3164WGoVyZ55RUpHAmkea9UlO5Pd+ufVePKLSM05ewxRZnTagi/W2BvoJoZULg==",
+  "_location": "/@mr_chick/vue_laravel_echo",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@mr_chick/vue_laravel_echo",
+    "name": "@mr_chick/vue_laravel_echo",
+    "escapedName": "@mr_chick%2fvue_laravel_echo",
+    "scope": "@mr_chick",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@mr_chick/vue_laravel_echo/-/vue_laravel_echo-1.0.0.tgz",
+  "_shasum": "921a6ec6482a64cfc8e8dd0a431c62ae915f1067",
+  "_spec": "@mr_chick/vue_laravel_echo",
+  "_where": "/media/puiucristian/",
+  "author": {
+    "name": "Puiu Cristian"
+  },
+  "bugs": {
+    "url": "https://github.com/mr-chick/vue_laravel_echo/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A wrapper (and more)  for the laravel-echo package",
+  "homepage": "https://github.com/mr-chick/vue_laravel_echo#readme",
+  "keywords": [
+    "laravel-echo",
+    "vue",
+    "socketio"
+  ],
+  "license": "MIT",
+  "main": "dist/build.js",
+  "name": "@mr_chick/vue_laravel_echo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-chick/vue_laravel_echo.git"
+  },
+  "scripts": {
+    "test": "test",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "version": "1.0.1",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "cross-env": "^3.1.3",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.0.0-beta.51"
+  }
+}
