@@ -1,13 +1,10 @@
-import Echo from 'laravel-echo'
-
 /**
  * Main object
  */
 
 const vue_laravel_echo = class VLE {
 
-  constructor(options) {
-    this.rawEcho = options.echo;
+  constructor() {
     
     this.options = {
       'host': '',
@@ -24,6 +21,7 @@ const vue_laravel_echo = class VLE {
 
   install (Vue, settings) {
 
+    this.rawEcho = settings.rawEcho
     // settings should be an object
     if (typeof settings !== "object") {
         // throw error
@@ -121,9 +119,7 @@ const vue_laravel_echo = class VLE {
 
 };
 
-export default new vue_laravel_echo({
-  'echo': Echo
-})
+export default new vue_laravel_echo()
 
 
 
