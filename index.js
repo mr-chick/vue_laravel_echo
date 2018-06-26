@@ -4,115 +4,116 @@ import Echo from 'laravel-echo'
  * Main object
  */
 
+const vue_laravel_echo = class VLE {
 
-const x = class CLS {
-  constructor() { // }
-}
+  constructor() {
+    this.options = {
+      'host': '',
+      'auth': null,
+      'broadcaster': '',
+      'pusher_key': null
+    }
+  }
 
-// const vue_laravel_echo = class VLE {
+  // /**
+  //  * Install function
+  //  */
 
-//   options = {
-//     'host': '',
-//     'auth': null,
-//     'broadcaster': '',
-//     'pusher_key': null
-//   }
+  install (Vue, settings) {
+    // settings should be an object
+    if (typeof settings !== "object") {
+        // throw error
+    }
 
-//   constructor() {}
+    this.initialize(settings);
+    Vue.prototype.$echo = this;
+  }
 
-//   // /**
-//   //  * Install function
-//   //  */
+  // /**
+  //  * Initializing echo
+  //  */
 
-//   install (Vue, settings) {
-//     // settings should be an object
-//     if (typeof settings !== "object") {
-//         // throw error
-//     }
+  initialize (settings) {
+    // set broadcaster
+    if (settings.broadcaster && typeof settings.broadcaster === "string") {
+      this.options.broadcaster = settings.broadcaster
+    }
 
-//     this.initialize(settings);
-//     Vue.prototype.$echo = this;
-//   }
+    // set host
+    if (settings.host && typeof settings.host === "string") {
+      this.options.host = settings.host
+    }
 
-//   // /**
-//   //  * Initializing echo
-//   //  */
+    // set auth headers
+    if (settings.auth && Array.isArray(settings.auth)) {
+      settings.auth.forEach(header => {
+        this.addAuthHeader(header)
+      })
+    }
 
-//   initialize (settings) {
-//     // set broadcaster
-//     if (settings.broadcaster && typeof settings.broadcaster === "string") {
-//       this.options.broadcaster = settings.broadcaster
-//     }
+    let options = {
+      broadcaster: this.options.broadcaster,
+      host: this.options.host,
+    }
 
-//     // set host
-//     if (settings.host && typeof settings.host === "string") {
-//       this.options.host = settings.host
-//     }
+    if (this.options.auth) options.auth = this.options.auth
 
-//     // set auth headers
-//     if (settings.auth && Array.isArray(settings.auth)) {
-//       settings.auth.forEach(header => {
-//         this.addAuthHeader(header)
-//       })
-//     }
+    switch (this.options.broadcaster) {
+      case 'socket.io':
+        window.io = require('socket.io-client');
 
-//     let options = {
-//       broadcaster: this.options.broadcaster,
-//       host: this.options.host,
-//     }
+        this.echo = new Echo(options);
+      break;
+      case 'pusher':
+        console.log("pusher is not yet implemented")
+        // window.Pusher = require('pusher-js');
+        break;
+    }
+  }
 
-//     if (this.options.auth) options.auth = this.options.auth
+  /**
+ * private
+ */
 
-//     switch (this.options.broadcaster) {
-//       case 'socket.io':
-//         window.io = require('socket.io-client');
+  private (channel) {
+    return this.echo.private(channel)
+  }
 
-//         this.echo = new Echo(options);
-//       break;
-//       case 'pusher':
-//         console.log("pusher is not yet implemented")
-//         // window.Pusher = require('pusher-js');
-//         break;
-//     }
-//   }
+  /**
+ * Add auth header
+ */
 
-//   /**
-//  * private
-//  */
+  addAuthHeader (header) {
+    if (!this.options.auth) this.options.auth = {}
+    if (!this.options.auth.headers) this.options.auth.headers = {}
+    let keys = Object.keys(header)
 
-//   private (channel) {
-//     return this.echo.private(channel)
-//   }
+    keys.forEach(key => {
+      this.options.auth.headers[key] = header[key]
+    })
+  }
 
-//   /**
-//  * Add auth header
-//  */
+  /**
+ * List channels
+ */
 
-//   addAuthHeader (header) {
-//     if (!this.options.auth) this.options.auth = {}
-//     if (!this.options.auth.headers) this.options.auth.headers = {}
-//     let keys = Object.keys(header)
+  channels () {
+    return this.echo.connector.channels;
+  }
 
-//     keys.forEach(key => {
-//       this.options.auth.headers[key] = header[key]
-//     })
-//   }
+  /**
+   * Status
+   */
 
-//   /**
-//  * List channels
-//  */
-
-//   channels () {
-//     return this.echo.connector.channels;
-//   }
-
-//   /**
-//    * Status
-//    */
-
-//   isConnected () { 
-//     return this.echo.connector.socket.connected; 
-//   }
-// };
+  isConnected () { 
+    return this.echo.connector.socket.connected; 
+  }
+};
 
 export default vue_laravel_echo
+
+
+
+
+
+

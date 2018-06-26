@@ -1,29 +1,23 @@
 const path = require('path');
+
 module.exports = {
   entry: './index.js',
+  mode: 'production',
+  devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
-    libraryTarget: 'commonjs2',
+    path: path.resolve('dist'),
+    filename: 'build.js'
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.js$/,
-        include: path.resolve(__dirname),
-        exclude: /(node_modules|build)/,
+        include: /src/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            babelrc: true
-          //     plugins: [
-          //       require('@babel/plugin-proposal-object-rest-spread'),
-          //       require('babel-plugin-transform-class-properties')
-          //     ]
-          }
-        },
-    }],
-  },
-  externals: {
-    Echo: 'laravel-echo',
-  },
+          loader: "babel-loader",
+        }
+      }
+    ]
+  }
 };
