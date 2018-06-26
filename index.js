@@ -5,7 +5,9 @@ import Echo from 'laravel-echo'
  */
 
 
-const vue_laravel_echo = { 'hello': '3' }
+const x = class CLS {
+  constructor() { // }
+}
 
 // const vue_laravel_echo = class VLE {
 
