@@ -47,7 +47,7 @@
     "url": "git+https://github.com/mr-chick/vue_laravel_echo.git"
   },
   "scripts": {
-    "test": "test",
+    "test": "test"
   },
   "version": "1.0.2",
   "devDependencies": {
