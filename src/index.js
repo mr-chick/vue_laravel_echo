@@ -80,7 +80,11 @@ const vue_laravel_echo = class VLE {
    */
 
   public (channel) {
-    return this.echo.public(channel)
+    return this.echo.channel(channel)
+  }
+
+  channel (channel ) {
+    return this.public(channel);
   }
 
   /**
