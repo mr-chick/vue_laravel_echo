@@ -50,7 +50,7 @@
     "test": "test",
     "build": "webpack --mode production"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "*",
