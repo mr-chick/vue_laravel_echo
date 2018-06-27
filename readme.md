@@ -79,3 +79,18 @@ this.$echo.private(`user.${process.env.USER_ID_TEST}`).listen('TestEvent', (e) =
   console.log(e);
 });
 ```
+
+#### Joining a public channel
+
+You join a public channel using `.channel(channel)` or `.public(channel)` metod
+
+```js
+this.$echo.channel(`user.${process.env.USER_ID_TEST}`).notification((notification) => {
+  console.log(notification);
+});
+```
+
+```js
+this.$echo.channel(`user.${process.env.USER_ID_TEST}`).listen('TestEvent', (e) => {
+  console.log(e);
+});
