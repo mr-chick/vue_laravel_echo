@@ -74,6 +74,15 @@ const vue_laravel_echo = class VLE {
     return this.echo.private(channel)
   }
 
+
+  /**
+   * public 
+   */
+
+  public (channel) {
+    return this.echo.public(channel)
+  }
+
   /**
  * Add auth header
  */
