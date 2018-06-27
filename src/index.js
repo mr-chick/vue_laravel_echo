@@ -2,14 +2,17 @@
  * Main object
  */
 
+import echo from 'laravel-echo'
+
 const vue_laravel_echo = class VLE {
 
-  constructor() {
-    
+  constructor(echo) {
+    this.rawEcho = echo;
+
     this.options = {
       'host': '',
       'auth': null,
-      'broadcaster': '',
+      'broadcaster': {},
       'pusher_key': null
     }
   }
@@ -20,8 +23,6 @@ const vue_laravel_echo = class VLE {
   //  */
 
   install (Vue, settings) {
-
-    this.rawEcho = settings.rawEcho
     // settings should be an object
     if (typeof settings !== "object") {
         // throw error
@@ -37,8 +38,9 @@ const vue_laravel_echo = class VLE {
 
   initialize (settings) {
     // set broadcaster
-    if (settings.broadcaster && typeof settings.broadcaster === "string") {
-      this.options.broadcaster = settings.broadcaster
+    if (settings.broadcaster && typeof settings.broadcaster === "object") {
+      this.options.broadcaster.name = settings.broadcaster.name
+      // this.options.broadcaster.object = settings.broadcaster.object
     }
 
     // set host
@@ -54,27 +56,14 @@ const vue_laravel_echo = class VLE {
     }
 
     let options = {
-      broadcaster: this.options.broadcaster,
+      broadcaster: this.options.broadcaster.name,
       host: this.options.host,
     }
 
     if (this.options.auth) options.auth = this.options.auth
-    
-    options.authEndpoint = 'google.com';
-    
-    switch (this.options.broadcaster) {
-      case 'socket.io':
-        window.io = require('socket.io-client');
 
-        this.echo = new this.rawEcho(options);
-        console.log("raw",this.rawEcho);
-        console.log("insatnce", new this.rawEcho(options));
-      break;
-      case 'pusher':
-        console.log("pusher is not yet implemented")
-        // window.Pusher = require('pusher-js');
-        break;
-    }
+    this.echo = new this.rawEcho(options);
+
   }
 
   /**
@@ -82,7 +71,6 @@ const vue_laravel_echo = class VLE {
  */
 
   private (channel) {
-    console.log('channel',channel)
     return this.echo.private(channel)
   }
 
@@ -119,9 +107,8 @@ const vue_laravel_echo = class VLE {
 
 };
 
-export default new vue_laravel_echo()
 
-
+export default new vue_laravel_echo(echo)
 
 
 
