@@ -53,6 +53,13 @@ Vue.use(echo, {
 
 The auth member is needed to authenticate private channels.
 
+
+If you don't have the token in initialize, you can add it sometime after, but before joining the channels
+
+```js
+this.$echo.addAuthToken(`token`);
+```
+
 If you use public channels, auth is not needed
 
 ### Usage
@@ -94,3 +101,13 @@ this.$echo.channel(`user.${process.env.USER_ID_TEST}`).notification((notificatio
 this.$echo.channel(`user.${process.env.USER_ID_TEST}`).listen('TestEvent', (e) => {
   console.log(e);
 });
+```
+
+#### Leaving a channel
+
+You leave a channel using `.leave(channel)` method
+
+```js
+this.$echo.leave(`user.${process.env.USER_ID_TEST}`);
+```
+
