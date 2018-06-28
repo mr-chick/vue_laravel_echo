@@ -29,7 +29,7 @@ npm i @mr_chick/vue_laravel_echo
 ```js
 import echo from '@mr_chick/vue_laravel_echo'
 ```
-### Attach `socket.io` to window
+#### Attach `socket.io` to window
 
 ```js 
 npm install --save socket.io-client
