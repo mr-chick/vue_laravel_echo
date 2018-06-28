@@ -7,6 +7,10 @@ I tried to implement as much as I could from the docomentation
 
 This plugin works using `socket.io` as broadcaster
 
+TODO:
+* Vuex support
+* Handle socket connections
+* Sugar sintax
 
 --- 
 

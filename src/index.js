@@ -47,26 +47,26 @@ const vue_laravel_echo = class VLE {
       this.options.broadcaster.name = settings.broadcaster.name;
       // this.options.broadcaster.object = settings.broadcaster.object
     }
-    this.showDebug("Broadcaster set to " + this.options.broadcaster.name);
+    this.showDebug("Broadcaster set to ", this.options.broadcaster.name);
 
     // set host
     if (settings.host && typeof settings.host === "string") {
       this.options.host = settings.host
     }
-    this.showDebug("Host set to " + this.options.host)
+    this.showDebug("Host set to ",this.options.host)
 
     // set auth headers
     if (settings.auth && typeof settings.auth === 'object' && settings.auth.headers && typeof settings.auth.headers === "object") {
       for (let [header, value] of Object.entries(settings.auth.headers)) {
           this.addAuthHeader(header,value)
-          this.showDebug("Auth header set to " + header + value);
+          this.showDebug("Auth header set to ", header + value);
       } 
     }
 
     // set the store
     if (settings.store && typeof settings.store === 'object') {
       this.store = settings.store
-      console.log('echo store', echoStore);
+      this.showDebug('echo store', echoStore);
       this.store.registerModule(['echo'], echoStore)
     }
     this.showDebug('Store is set to ', this.store)
@@ -137,7 +137,7 @@ const vue_laravel_echo = class VLE {
     if (this.echo.connector._defaultOptions.auth) {
       this.echo.connector._defaultOptions.auth.headers['Authorization'] = 'Bearer ' + token;
     }
-    if (this.debug) console.log('settings auth token to ' + token);
+    this.showDebug('settings auth token to ', token);
   }
 
   /**
@@ -160,8 +160,8 @@ const vue_laravel_echo = class VLE {
    * Debug
    */
 
-  showDebug (data) {
-    if(this.debug) console.log(data)
+  showDebug (string, data = null) {
+    if(this.debug) console.log(string, data)
   }
 };
 
