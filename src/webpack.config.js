@@ -8,7 +8,7 @@ module.exports = {
         library: 'vue_laravel_echo',
         libraryTarget: 'commonjs2'
       },
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
