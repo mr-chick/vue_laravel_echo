@@ -12,6 +12,8 @@ TODO:
 * Handle socket connections
 * Sugar sintax
 
+*If you have a feature request, please create a issue
+
 --- 
 
 Settings laravel echo is not part of this readme.
@@ -24,7 +26,7 @@ Settings laravel echo is not part of this readme.
 npm i @mr_chick/vue_laravel_echo
 ```
 
-#### with the package installed, you have to import it
+#### with the package installed, you have to import it in your vue project
 
 ```js
 import echo from '@mr_chick/vue_laravel_echo'
